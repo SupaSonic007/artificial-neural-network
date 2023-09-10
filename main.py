@@ -6,7 +6,7 @@ from pprint import pprint
 class ArtificialNeuralNetwork:
     """
     A class to represent an Artificial Neural Network.
-    
+
     Attributes
     ----------
     synaptic_weights : ndarray
@@ -22,12 +22,12 @@ class ArtificialNeuralNetwork:
     def sigmoid(self, x) -> float:
         """
         Maps a value from 0 to 1 using the sigmoid function.
-        
+
         Parameters
         ----------
         x : float
             The input value.
-        
+
         Returns
         -------
         float
@@ -38,12 +38,12 @@ class ArtificialNeuralNetwork:
     def sigmoid_derivative(self, x) -> float:
         """
         Computes the derivative of the sigmoid function.
-        
+
         Parameters
         ----------
         x : float
             The input value.
-        
+
         Returns
         -------
         float
@@ -54,12 +54,12 @@ class ArtificialNeuralNetwork:
     def think(self, inputs) -> float:
         """
         Computes the dot product of the inputs and synaptic weights, and applies the sigmoid function.
-        
+
         Parameters
         ----------
         inputs : ndarray
             The input values.
-        
+
         Returns
         -------
         float
@@ -72,9 +72,9 @@ class ArtificialNeuralNetwork:
     def train(self, training_inputs: np.ndarray, training_outputs: np.ndarray, number_of_iterations: int) -> None:
         """
         Trains the neural network using the given training inputs and outputs.
-        
+
         It calculates the error margin by comparing the output to the expected output and adjusts the synapses based on this error margin (back propagation).
-        
+
         Parameters
         ----------
         training_inputs : ndarray
@@ -83,7 +83,7 @@ class ArtificialNeuralNetwork:
             The expected outputs of the model.
         number_of_iterations : int
             The number of training iterations to run.
-        
+
         Returns
         -------
         None
@@ -91,8 +91,10 @@ class ArtificialNeuralNetwork:
         for _ in range(number_of_iterations):
             output = self.think(training_inputs)
             error = training_outputs - output
-            adjustments = np.dot(training_inputs.T, error * self.sigmoid_derivative(output))
+            adjustments = np.dot(training_inputs.T, error *
+                                 self.sigmoid_derivative(output))
             self.synaptic_weights += adjustments
+
 
 if __name__ == '__main__':
 
@@ -125,4 +127,3 @@ if __name__ == '__main__':
 
     print('\n')
     pprint(f"The answer for {_input} is: {result}")
-
